@@ -23,7 +23,13 @@ for ii = 1:size(quaternion_chaser,2)
     quaternion_chaser(:,ii) = a2q(parent2cam*q2a(quaternion_chaser(:,ii)));
 end
 
+% Get the tether position:
+tether_mount = zeros(3,size(quaternion_target,2));
+for ii = 1:size(quaternion_target,2)
+    tether_mount(:,ii) = sat_position(:,ii) + q2a(quaternion_target(:,ii))'*target_connection(:,1);
+end
+
 % Save the data to csv:
-output_data = [t; sat_position; quaternion_chaser; quaternion_target]';
+output_data = [t; sat_position; quaternion_chaser; quaternion_target; tether_mount]';
 output_data = output_data(1:DOWN_SAMPLE:end,:);
 writematrix(output_data,'states.csv')
