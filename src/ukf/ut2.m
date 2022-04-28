@@ -10,11 +10,11 @@ function [mu, P, deviations, sigmas_out, q_hat_p] = ut2(systemModel, dt, sigmas,
     % Reform the error vector:
     q_hat_p = sigmas_out(1:4,1);
     dq = q2dq(sigmas_out,q_hat_p);
-    sigmas_reduced = [dq; sigmas_out(5:end,:)];
+    sigmas_out = [dq; sigmas_out(5:7,:)];
     
     % Calculate new mean:
-    mu = sigmas_reduced*Wm'; 
+    mu = sigmas_out*Wm'; 
     
     % Recover a posteriori distribution:
-    [P, deviations] = aposteriori_distribution(sigmas_reduced, mu, num_sigmas, Wc, R);
+    [P, deviations] = aposteriori_distribution(sigmas_out, mu, num_sigmas, Wc, R);
 end
