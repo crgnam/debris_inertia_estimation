@@ -1,0 +1,7 @@
+*.asv
+*.swp
+
+*.pdf
+docs/latex*
+
+lib/mice/*

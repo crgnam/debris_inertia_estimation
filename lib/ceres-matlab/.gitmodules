@@ -1,0 +1,3 @@
+[submodule "docs/ceres-doc-sty"]
+	path = docs/ceres-doc-sty
+	url = git@gitlab.com:ceres-navigation/documentation/ceres-doc-sty.git
